@@ -6,7 +6,7 @@ def buildStruct(px,py,pillarsDist,by,bz,beamsDist):
 	for i in range(len(pillarsDist)):
 		beam = CUBOID([pillarsDist[i],by,bz])
 		for j in range(len(beamsDist)):
-			"""create the last beam with the proper high"""
+			"""create the last beam with the proper height"""
 			if j == len(beamsDist)-1:
 				beam = CUBOID([pillarsDist[i]+px,by,bz])
 			struct = STRUCT([struct,T(3)(beamsDist[j]),beam])
