@@ -1,6 +1,5 @@
 """workshop_07
 Creates windows or doors using given parameters
-
 """
 
 from larlib import *
@@ -111,4 +110,3 @@ def main():
 
 if __name__=='__main__':
 	main()
-
