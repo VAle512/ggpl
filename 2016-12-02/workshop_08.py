@@ -65,7 +65,6 @@ def ggpl_house_builder():
 			if cont == 4:
 				listWindowsHoles.append(MKPOL([cuboid,[[1,2,3,4]],None]))
 				base = MKPOL([cuboid,[[1,2,3,4]],None])
-				#base = OFFSET([.1,.1])(base)
 				base = PROD([base,Q(1.5)])
 				cuboid = []
 				cont = 0

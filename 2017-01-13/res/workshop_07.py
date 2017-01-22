@@ -43,6 +43,13 @@ def ggpl_window(x,y,b):
 					cub = CUBOID([x[i],y[j],.05])
 					cub = T(1)(accX)(cub)
 					cub = T(2)(accY)(cub)
+					cub = COLOR(Color4f([205/255.0,170/255.0,125/255.0,1]))(cub)
+					struct = STRUCT([struct,cub])
+				else:
+					cub = CUBOID([x[i],y[j],.05])
+					cub = T(1)(accX)(cub)
+					cub = T(2)(accY)(cub)
+					cub = TEXTURE("textures/workshop_10_vetro.jpg")(cub)
 					struct = STRUCT([struct,cub])
 				accX += x[i]
 			accY += yR[j]
@@ -75,12 +82,17 @@ def ggpl_door(x,y,b):
 					cub = CUBOID([x[i],y[j],.05])
 					cub = T(1)(accX)(cub)
 					cub = T(2)(accY)(cub)
+					cub = COLOR(Color4f([205/255.0,170/255.0,125/255.0,1]))(cub) #brown
+					struct = STRUCT([struct,cub])
+				else:
+					cub = CUBOID([x[i],y[j],.05])
+					cub = T(1)(accX)(cub)
+					cub = T(2)(accY)(cub)
+					cub = TEXTURE("textures/workshop_10_vetro.jpg")(cub)
 					struct = STRUCT([struct,cub])
 				accX += x[i]
 			accY += yR[j]
 
-		#color brown
-		struct = COLOR(Color4f([205/255.0,170/255.0,125/255.0,1]))(struct)
 
 		#creating the handle
 		hx = sum(x)/10.0
@@ -88,6 +100,7 @@ def ggpl_door(x,y,b):
 		hPosition = sum(x[2:])+x[0]*3.0/2.0
 		handle = CUBOID([hx,hy,(dz*2.0)/2.0])
 		handle = T([1,2])([hPosition,sum(y)/2.0])(handle)
+		handle = TEXTURE("textures/workshop_10_pomello.jpeg")(handle)
 
 		struct = STRUCT([struct,handle])
 		struct = R([2,3])(PI/2)(struct)

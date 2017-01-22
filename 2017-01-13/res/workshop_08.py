@@ -31,7 +31,7 @@ def ggpl_house_builder():
 	roof = w_09.ggpl_roof_builder("workshop_10_muri_esterni")
 	roof = T([1,2])([float(row[0]),float(row[1])])(roof)
 	roof = S([1,2])([xScale,yScale])(roof)
-	#TODO roof = TEXTURE("texture/ ROOF TEXTURE")(roof)
+	roof = TEXTURE("textures/workshop_10_tetto.jpg")(roof)
 
 
 	####### INTERNAL WALLS SECTION #######
@@ -75,12 +75,10 @@ def ggpl_house_builder():
 				cuboid = []
 				cont = 0
 				if xDiff < yDiff:
-					print yDiff
-					window = w_07.ggpl_window(XWindow,YWindow,occurencesWindow)(yDiff*yScale,0.2,1.5)
-					window = R([1,2])(-PI/2)(window)
+					window = w_07.ggpl_window(XWindow,YWindow,occurencesWindow)(yDiff*yScale,1.5,1.5)
+					window = R([1,2])(3*PI/2)(window)
 				else:
-					window = w_07.ggpl_window(XWindow,YWindow,occurencesWindow)((xDiff*xScale),.2,1.5)
-					window = T(2)(-0.2)(window)
+					window = w_07.ggpl_window(XWindow,YWindow,occurencesWindow)(xDiff*xScale +.2,1.5,1.5)
 				
 				window = T([1,2,3])([float(row[0])*xScale, float(row[1])*yScale,1])(window)
 				listWindowsCreated.append(window)
@@ -124,12 +122,11 @@ def ggpl_house_builder():
 				door = []
 				cont = 0
 				if xDiff < yDiff:
-					door = w_07.ggpl_door(XDoor,YDoor,occurencesDoor)(yDiff*yScale,.2,3)
-					door = T([1,2])([-0.1,0.1])(door)
-					door = R([1,2])(-PI/2)(door)
+					door = w_07.ggpl_door(XDoor,YDoor,occurencesDoor)(yDiff*yScale,3,.1)
+					door = T([2])([.4])(door)
+					door = R([1,2])(3*PI/2)(door)
 				else:
-					door = w_07.ggpl_door(XDoor,YDoor,occurencesDoor)(xDiff*xScale,.2,3)
-					door = T([1,2])([0.2,-0.2])(door)
+					door = w_07.ggpl_door(XDoor,YDoor,occurencesDoor)(xDiff*xScale,3,.1)
 
 				door = T([1,2])([float(row[0])*xScale,float(row[1])*yScale])(door)
 				listInternalDoorsCreated.append(door)
@@ -163,12 +160,10 @@ def ggpl_house_builder():
 				door = []
 				cont = 0
 				if xDiff < yDiff:
-					door = w_07.ggpl_door(XDoor, YDoor, occurencesDoor)(yDiff * yScale, .2, 2.5)
-					door = T([1, 2])([-0.1, 0.1])(door)
-					door = R([1, 2])(-PI / 2)(door)
+					door = w_07.ggpl_door(XDoor, YDoor, occurencesDoor)(yDiff * yScale, 2.5,.1)
+					door = R([1, 2])(PI/2)(door)
 				else:
-					door = w_07.ggpl_door(XDoor, YDoor, occurencesDoor)(xDiff * xScale, .2, 2.5)
-					door = T( 2)( -0.1)(door)
+					door = w_07.ggpl_door(XDoor, YDoor, occurencesDoor)(xDiff * xScale, 2.5,.1)
 
 				door = T([1, 2])([float(row[0]) * xScale, float(row[1]) * yScale])(door)
 				listExternalDoorsCreated.append(door)
@@ -176,7 +171,7 @@ def ggpl_house_builder():
 		stair = w_03.ggpl_single_stair(8.,6.,3.5)
 		stair = R([1,2])(PI)(stair)
 		stair = T([1,2])([float(row[0]) * xScale+2.5, float(row[1]) * yScale+6])(stair)
-		#TODO stair = TEXTURE("texture/ STAIR TEXTURE")(stair)
+		stair = TEXTURE("textures/workshop_10_scale.jpg")(stair)
 
 	externalDoorsHoles = STRUCT(listExternalDoorsHoles)
 	externalDoorsHoles = OFFSET([0,.15])(externalDoorsHoles)
