@@ -72,7 +72,7 @@ def findAngle(p1,p2):
 
 	return math.atan2(p1[1]-p2[1],p1[0]-p2[0])
 
-def ggpl_roof_builder(fileName):
+def ggpl_roof_builder(externalWallsLinesPath):
 	'''build a roof starting from a .lines file rappresenting the vertices of the roof's base
 	@param: the name of the .lines file. It must be located in the lines folder
 	@rerturn: the HPC value of the roof'''
@@ -84,14 +84,14 @@ def ggpl_roof_builder(fileName):
 	topShape = []
 	pol= []
 	pol2 = []
-	with open("lines/"+fileName+".lines", "rb") as file:
+	with open(externalWallsLinesPath, "rb") as file:
 		reader = csv.reader(file, delimiter=",")
 		polylineList = []
 		reader2 = reader
 		row1=next(reader2)
 		px = row1[0]
 		py = row1[1]
-	with open("lines/"+fileName+".lines", "rb") as file:
+	with open(externalWallsLinesPath, "rb") as file:
 		reader = csv.reader(file, delimiter=",")
 		for row in reader:
 			firstShape.append([float(row[0])-float(px),float(row[1])-float(py)])
