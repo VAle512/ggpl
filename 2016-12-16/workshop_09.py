@@ -122,12 +122,12 @@ def ggpl_roof_builder(fileName):
 		t=t+1
 
 	piano = SOLIDIFY(STRUCT(pol2))
-	piano = T(3)(4)(piano)
+	piano = T(3)(15)(piano)
 	firstShape = firstShape+ [firstShape[0]]
 	for p in range(len(firstShape)):
 		firstShape[p]=firstShape[p]+[float(0)]
 	for k in range(len(topShape)):
-		topShape[k]=topShape[k]+[float(4)]
+		topShape[k]=topShape[k]+[float(15)]
 
 	while s<len(makeUnique(firstShape)):
 		falde.append(MKPOL([[firstShape[s],firstShape[s+1],topShape[s],topShape[s+1]],[[1,2,3,4]],None]))
@@ -138,7 +138,8 @@ def ggpl_roof_builder(fileName):
 	return roof
 
 def main():
-	VIEW(ggpl_roof_builder("workshop_09_linee_tetto"))
+	VIEW(ggpl_roof_builder("workshop_09_linee_tetto_1"))
+	VIEW(ggpl_roof_builder("workshop_09_linee_tetto_2"))
 
 
 if __name__ == '__main__':

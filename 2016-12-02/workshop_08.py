@@ -30,10 +30,10 @@ def ggpl_house_builder():
 	xScale = 16/SIZE([1])(externalWalls)[0]
 	yScale = 16/SIZE([2])(externalWalls)[0]
 	externalWalls = S([1,2])([xScale,yScale])(externalWalls)
-	
+
 	pavement = SOLIDIFY (externalWalls)
 	pavement = TEXTURE("textures/workshop_08_texture_pavimento.jpeg")(pavement)
-	
+
 	externalWalls = OFFSET([.15,.15])(externalWalls)
 	externalWalls = PROD([externalWalls,Q(3.5)])
 
@@ -49,10 +49,10 @@ def ggpl_house_builder():
 	internalWalls = S([1,2])([xScale,yScale])(internalWalls)
 	internalWalls = OFFSET([.1,.1])(internalWalls)
 	internalWalls = PROD([internalWalls,Q(3)])
-	
+
 
 	####### WINDOWS SECTION #######	
-	
+
 	with open(windowsLinesPath, "rb") as csvfile:
 		csvReader = csv.reader(csvfile,delimiter=",")
 		listWindowsHoles = []
