@@ -1,5 +1,5 @@
 """workshop_08.py
-
+creates the 3D map of an house starting from several lines files
 """
 
 import csv
