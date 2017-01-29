@@ -185,6 +185,7 @@ def main():
 	#VIEW(ggpl_desk_chair(1.2,0.7,0.9))
 	#VIEW(ggpl_teacher_desk_chair(1.5,1,1))
 	ggpl_classroom(12,10,3.5)
+	ggpl_classroom(19,9,3.2)
 
 if __name__ == '__main__':
 	main()
