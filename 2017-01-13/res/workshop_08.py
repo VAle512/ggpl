@@ -29,7 +29,7 @@ def ggpl_house_builder(externalWallsLinesPath,internalWallsLinesPath,windowsLine
 			pavement = SOLIDIFY (externalWalls)
 			pavement = TEXTURE("textures/workshop_10_texture_pavimento.jpeg")(pavement)
 			
-			externalWalls = OFFSET([.2,.2])(externalWalls)
+			externalWalls = OFFSET([.1,.1])(externalWalls)
 			externalWalls = PROD([externalWalls,Q(3.5)])
 
 			roof = w_09.ggpl_roof_builder(externalWallsLinesPath)
@@ -47,7 +47,7 @@ def ggpl_house_builder(externalWallsLinesPath,internalWallsLinesPath,windowsLine
 					internalWalls_list.append(POLYLINE([[float(row[0]),float(row[1])],[float(row[2]),float(row[3])]]))
 			internalWalls = STRUCT(internalWalls_list)
 			internalWalls = S([1,2])([xScale,yScale])(internalWalls)
-			internalWalls = OFFSET([.2,.2])(internalWalls)
+			internalWalls = OFFSET([.1,.1])(internalWalls)
 			internalWalls = PROD([internalWalls,Q(3)])
 			
 

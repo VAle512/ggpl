@@ -43,13 +43,7 @@ def ggpl_window(x,y,b):
 					cub = CUBOID([x[i],y[j],.05])
 					cub = T(1)(accX)(cub)
 					cub = T(2)(accY)(cub)
-					cub = COLOR(Color4f([205/255.0,170/255.0,125/255.0,1]))(cub)
-					struct = STRUCT([struct,cub])
-				else:
-					cub = CUBOID([x[i],y[j],.05])
-					cub = T(1)(accX)(cub)
-					cub = T(2)(accY)(cub)
-					cub = TEXTURE("textures/workshop_10_vetro.jpg")(cub)
+					cub = COLOR(GRAY)(cub)
 					struct = STRUCT([struct,cub])
 				accX += x[i]
 			accY += yR[j]
