@@ -1,5 +1,6 @@
 """workshop_11.py
-
+Creates a model of the suburban neighborhood found at this link:
+https://github.com/VAle512/ggpl/blob/master/2017-01-27/jupyter_images/workshop_11_model.jpg
 """
 
 from pyplasm import *
@@ -8,6 +9,11 @@ from lib import workshop_10 as w_10
 
 
 def neighborhoodAssembler(streets, house):
+	'''Put several houses in the right location.
+	@param streets: the streets system where the houses have to be located
+	@param house: the model of the house
+	@return nb: the model of a neighborhood with streets and houses
+	'''
 
 	streets = S([1,2,3])([1.5,1.5,1.5])(streets)
 	house = S([1,2,3])([.9,.9,.9])(house)
@@ -113,6 +119,11 @@ def neighborhoodAssembler(streets, house):
 	return nb
 
 def treeAssembler(nb,tree):
+	'''Put several trees in the right location.
+	@param nb: the neighborhood where trees have to be located
+	@param tree: the model of a tree
+	@return nb: the model of a neighborhood with trees in it
+	'''
 
 	#top left trees
 	nb = STRUCT([(T([1])([70])(tree)),nb])
@@ -178,17 +189,25 @@ def treeAssembler(nb,tree):
 	return nb
 
 def treeBuilder(h):
+	'''Create a tree with the given height.
+	@param h: the height of the tree
+	@return nb: the tree created
+	'''
 
 	r = h/15.
 	log = CYLINDER([r,h])(64)
 	log = MATERIAL([.05,.05,.05,1, .4,.2,0,1, 0,0,0,0, 0,0,0,1, 100])(log)
 	foliage = SPHERE(h/4.)([64,64])
-	foliage = MATERIAL([.05,.05,.05,1, .33,1,.07,1, 0,0,0,0, 0,0,0,1, 100])(foliage)	
+	foliage = MATERIAL([.05,.05,.05,1, .33,1,.07,1, 0,0,0,0, 0,0,0,1, 100])(foliage)
 	foliage = T(3)(h)(foliage)
 	tree = STRUCT([log,foliage])
 	return tree
 
 def streetsBuilder(lines):
+	'''Creates a streets system from a collection of points
+	@param lines: a collection of points representing the streets
+	@return st: a model of the streets system created 
+	'''
 
 	st = STRUCT([CUBOID([0,0,0])])
 	st = DIFFERENCE([st,st])
@@ -200,26 +219,35 @@ def streetsBuilder(lines):
 	return st
 
 def createPlattfrom(nb):
+	'''Creates a plattform for the given neighborhood model
+	@param nb: the neighborhood model to put on top of the plattform
+	@return plattform: the plattform for the neighborhood model, without the model on top
+	'''
 
 	boxTop =  SKEL_1(BOX([1,2])(nb))
 	boxTop = SOLIDIFY(boxTop)
-	box = OFFSET([1,1,5])(boxTop)
-	box = T([3])([-8])(box)
+	box = OFFSET([1,1,9])(boxTop)
+	box = T([3])([-12])(box)
 	box = MATERIAL([.05,.05,.05,1, .4,.2,0,1, 0,0,0,0, 0,0,0,1, 100])(box)
 	boxTop = OFFSET([1,1,2])(boxTop)
 	boxTop = T([3])([-3])(boxTop)
 	boxTop = TEXTURE('textures/workshop_11_erba.jpeg')(boxTop)
-	return STRUCT([box,boxTop])
+	plattform = STRUCT([box,boxTop])
+	return plattform
 
 def ggpl_suburban_neighborhood_builder(streetsPoints):
+	'''Creates a neighborhood model, starting from a collection of point
+	@param streetsPoints: the collection of points representing the streets system of the model
+	@return nb: the neighborhood model created with streets, houses and trees, on top of a plattform
+	'''
 
 	streets = streetsBuilder(streetsPoints)
 	house = w_10.ggpl_house_builder()
 	nb = neighborhoodAssembler(streets, house)
-	plattform = createPlattfrom(nb)
-	nb = STRUCT([nb,plattform])
 	tree = treeBuilder(5)
 	nb = treeAssembler(nb,tree)
+	plattform = createPlattfrom(nb)
+	nb = STRUCT([nb,plattform])
 
 	return nb
 
